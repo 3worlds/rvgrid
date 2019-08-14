@@ -62,8 +62,8 @@ public class Main {
 	public static void main(String[] args) {
 		SimNode sim = new SimNode();
 		CtrlNode ctrl = new CtrlNode();
-		ctrl.addCtrlListener(sim);
-		sim.addSimListener(ctrl);
+		ctrl.addObserver(sim);
+		sim.addObserver(ctrl);
 
 		int nMsgs = 100;
 		Object payload = new Object();
@@ -73,7 +73,7 @@ public class Main {
 			@Override
 			public void run() {
 				for (int i = 0; i < nMsgs; i++)
-					ctrl.sendCtrlMessage(MSG_CTRL_TO_SIM1, payload);
+					ctrl.sendMessage(MSG_CTRL_TO_SIM1, payload);
 			}
 		};
 		Thread thread1 = new Thread(task1);
@@ -82,7 +82,7 @@ public class Main {
 			@Override
 			public void run() {
 				for (int i = 0; i < nMsgs; i++)
-					ctrl.sendCtrlMessage(MSG_CTRL_TO_SIM2, payload);
+					ctrl.sendMessage(MSG_CTRL_TO_SIM2, payload);
 
 			}
 		};
@@ -93,7 +93,7 @@ public class Main {
 			@Override
 			public void run() {
 				for (int i = 0; i < nMsgs; i++)
-					sim.sendSimListenerMessage(MSG_SIM_TO_CTRL1, payload);
+					sim.sendMessage(MSG_SIM_TO_CTRL1, payload);
 
 			}
 		};
@@ -104,7 +104,7 @@ public class Main {
 			@Override
 			public void run() {
 				for (int i = 0; i < nMsgs; i++)
-					sim.sendSimListenerMessage(MSG_SIM_TO_CTRL2, payload);
+					sim.sendMessage(MSG_SIM_TO_CTRL2, payload);
 
 			}
 		};

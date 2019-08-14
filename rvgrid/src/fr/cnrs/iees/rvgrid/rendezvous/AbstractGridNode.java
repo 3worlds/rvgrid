@@ -27,48 +27,48 @@
  *  If not, see <https://www.gnu.org/licenses/gpl.html>                   *
  *                                                                        *
  **************************************************************************/
-package fr.cnrs.iees.rvgrid.rendezvous.examples;
+package fr.cnrs.iees.rvgrid.rendezvous;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 
-import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
-import fr.cnrs.iees.rvgrid.observer.Observable;
-import fr.cnrs.iees.rvgrid.observer.Observer;
-import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
-import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
-import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
+/**
+ * Instances of this class can exchange RVMessage at rendezvous and execute a RendezVousProcess
+ * matching the message type.
+ * 
+ * @author Ian Davies - 14 août 2019
+ * 			after Shayne Flint, 2012
+ *
+ */
+public abstract class AbstractGridNode implements GridNode {
+	// used only when msgs bank up because rendezvous is yet to be added.
+	protected Queue<RVMessage> messageQueue = new LinkedList<>();
+	private Map<Integer, RendezvousProcess> rendezvousProcesses = new HashMap<>();
 
-public class CtrlNode extends AbstractGridNode implements Observer, Observable<SimNode> {
-	private List<GridNode> ctrlListeners;
-
-	public CtrlNode () {
-		ctrlListeners = new ArrayList<>();
-		this.addRendezvous(new RendezvousProcess() {
-
-			@Override
-			public void execute(RVMessage message) {
-				myProcess(message);
-				
-			}}, Main.MSG_SIM_TO_CTRL1, Main.MSG_SIM_TO_CTRL2);
-		
-
-	}
-
-	private void myProcess (RVMessage msg) {
-		System.out.println("Ctrl msg process: " + msg.getMessageHeader().type());
-
-	}
-	@Override
-	public void addObserver(SimNode l) {
-		ctrlListeners.add(l);
-	}
-	
-	@Override
-	public void sendMessage(int msgType, Object payload) {
-		for (GridNode target : ctrlListeners) {
-			RVMessage msg = new RVMessage(msgType, payload,this,target);
-			target.callRendezvous(msg);
+	public AbstractGridNode addRendezvous(RendezvousProcess process, int... types) {
+		/**
+		 * Duplicate the process entry for each type. Not sure when this would be the case
+		 * unless a process uses a switch statement on msg type?
+		 */
+		for (int type : types)
+			rendezvousProcesses.put(type, process);
+		// Process any pending msgs if possible.
+		if (!messageQueue.isEmpty()) {
+			return callRendezvous(messageQueue.remove());
 		}
+		return this;
 	}
+
+	// Ideally, this should NEVER be overriden. Too brittle.
+	public final synchronized AbstractGridNode callRendezvous(RVMessage message) {
+		RendezvousProcess process = rendezvousProcesses.get(message.getMessageHeader().type());
+		if (process == null)
+			messageQueue.offer(message);
+		else
+			process.execute(message);
+		return this;
+	}
+
 }

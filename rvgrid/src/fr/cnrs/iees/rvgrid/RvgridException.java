@@ -27,48 +27,38 @@
  *  If not, see <https://www.gnu.org/licenses/gpl.html>                   *
  *                                                                        *
  **************************************************************************/
-package fr.cnrs.iees.rvgrid.rendezvous.examples;
+package fr.cnrs.iees.rvgrid;
 
-import java.util.ArrayList;
-import java.util.List;
+import fr.ens.biologie.generic.Textable;
 
-import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
-import fr.cnrs.iees.rvgrid.observer.Observable;
-import fr.cnrs.iees.rvgrid.observer.Observer;
-import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
-import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
-import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
+/**
+ * 
+ * @author Jacques Gignoux - 14 août 2019
+ *
+ */
+public class RvgridException extends RuntimeException {
 
-public class CtrlNode extends AbstractGridNode implements Observer, Observable<SimNode> {
-	private List<GridNode> ctrlListeners;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1724666389814181944L;
 
-	public CtrlNode () {
-		ctrlListeners = new ArrayList<>();
-		this.addRendezvous(new RendezvousProcess() {
-
-			@Override
-			public void execute(RVMessage message) {
-				myProcess(message);
-				
-			}}, Main.MSG_SIM_TO_CTRL1, Main.MSG_SIM_TO_CTRL2);
-		
-
+	public RvgridException(Textable item, String message) {
+		super("[on " + item + "]\n[" + message + "]");
 	}
 
-	private void myProcess (RVMessage msg) {
-		System.out.println("Ctrl msg process: " + msg.getMessageHeader().type());
+	public RvgridException(String message) {
+		super("[" + message + "]");
+	}
 
+	public RvgridException(Exception e) {
+		super(e);
 	}
-	@Override
-	public void addObserver(SimNode l) {
-		ctrlListeners.add(l);
+
+	public RvgridException(String message, Exception e) {
+		super("[" + message + "]\n[original exception: " + e + "]");
+		e.printStackTrace();
 	}
-	
-	@Override
-	public void sendMessage(int msgType, Object payload) {
-		for (GridNode target : ctrlListeners) {
-			RVMessage msg = new RVMessage(msgType, payload,this,target);
-			target.callRendezvous(msg);
-		}
-	}
+
+
 }

@@ -27,48 +27,22 @@
  *  If not, see <https://www.gnu.org/licenses/gpl.html>                   *
  *                                                                        *
  **************************************************************************/
-package fr.cnrs.iees.rvgrid.rendezvous.examples;
+package fr.cnrs.iees.rvgrid.statemachine;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
-import fr.cnrs.iees.rvgrid.observer.Observable;
-import fr.cnrs.iees.rvgrid.observer.Observer;
-import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
-import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
-import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
-
-public class CtrlNode extends AbstractGridNode implements Observer, Observable<SimNode> {
-	private List<GridNode> ctrlListeners;
-
-	public CtrlNode () {
-		ctrlListeners = new ArrayList<>();
-		this.addRendezvous(new RendezvousProcess() {
-
-			@Override
-			public void execute(RVMessage message) {
-				myProcess(message);
-				
-			}}, Main.MSG_SIM_TO_CTRL1, Main.MSG_SIM_TO_CTRL2);
-		
-
-	}
-
-	private void myProcess (RVMessage msg) {
-		System.out.println("Ctrl msg process: " + msg.getMessageHeader().type());
-
-	}
-	@Override
-	public void addObserver(SimNode l) {
-		ctrlListeners.add(l);
-	}
+/**
+ * 
+ * @author Jacques Gignoux - 14 août 2019
+ *
+ */
+public interface StateMachine {
 	
-	@Override
-	public void sendMessage(int msgType, Object payload) {
-		for (GridNode target : ctrlListeners) {
-			RVMessage msg = new RVMessage(msgType, payload,this,target);
-			target.callRendezvous(msg);
-		}
-	}
+	public Iterable<State> getStates();
+	public Iterable<Transition> getInitialPseudoStates(); // yes, this is correct
+	public Iterable<Transition> getTransitions();
+	public void setCurrentState(State state);
+	public State getCurrentState();
+	public Iterable<Event> getEvents();
+	public boolean inInitialState();
+	
 }

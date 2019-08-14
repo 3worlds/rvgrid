@@ -27,47 +27,15 @@
  *  If not, see <https://www.gnu.org/licenses/gpl.html>                   *
  *                                                                        *
  **************************************************************************/
-package fr.cnrs.iees.rvgrid.rendezvous;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+package fr.cnrs.iees.rvgrid.observer;
 
 /**
- * Instances of this class can exchange RVMessage at rendezvous and execute a RendezVousProcess
- * matching the message type.
+ * Use this class to be able to observe a particular kind of Observable
  * 
- * @author Ian Davies - 14 août 2019
- * 			after Shayne Flint, 2012
+ * @author Jacques Gignoux - 14 août 2019
  *
  */
-public class GridNodeImpl implements GridNode {
-	// used only when msgs bank up because rendezvous is yet to be added.
-	private Queue<RVMessage> messageQueue = new LinkedList<>();
-	private Map<Integer, RendezvousProcess> rendezvousProcesses = new HashMap<>();;
-
-	public GridNodeImpl addRendezvous(RendezvousProcess process, int... types) {
-		/**
-		 * Duplicate the process entry for each type. Not sure when this would be the case
-		 * unless a process uses a switch statement on msg type?
-		 */
-		for (int type : types)
-			rendezvousProcesses.put(type, process);
-		// Process any pending msgs if possible.
-		if (!messageQueue.isEmpty()) {
-			return callRendezvous(messageQueue.remove());
-		}
-		return this;
-	}
-
-	public synchronized GridNodeImpl callRendezvous(RVMessage message) {
-		RendezvousProcess process = rendezvousProcesses.get(message.getMessageHeader().type());
-		if (process == null)
-			messageQueue.offer(message);
-		else
-			process.execute(message);
-		return this;
-	}
-
+public interface Observer {
+	
+	
 }

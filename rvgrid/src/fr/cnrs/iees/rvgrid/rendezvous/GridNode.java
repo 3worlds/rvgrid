@@ -37,6 +37,6 @@ package fr.cnrs.iees.rvgrid.rendezvous;
 public interface GridNode {
 
 	/** NB: implementations must be synchronized */
-	public GridNodeImpl callRendezvous(RVMessage message);
+	public AbstractGridNode callRendezvous(RVMessage message);
 	
 }

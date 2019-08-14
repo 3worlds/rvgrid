@@ -33,11 +33,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
-import fr.cnrs.iees.rvgrid.rendezvous.GridNodeImpl;
+import fr.cnrs.iees.rvgrid.observer.Observable;
+import fr.cnrs.iees.rvgrid.observer.Observer;
+import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
 import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
 
-public class SimNode extends GridNodeImpl {
+public class SimNode extends AbstractGridNode
+		implements Observable<CtrlNode>, Observer {
 	private List<GridNode> simListeners;
 
 	public SimNode() {
@@ -52,19 +55,22 @@ public class SimNode extends GridNodeImpl {
 		
 	}
 
-	public void addSimListener(GridNode l) {
-		simListeners.add(l);
-	}
-
-	public void sendSimListenerMessage(int type, Object payload) {
-		for (GridNode target : simListeners) {
-			RVMessage msg = new RVMessage(type, payload,this,target);
-			target.callRendezvous(msg);
-		}
-	}
 	private void myProcess (RVMessage msg) {
 		System.out.println("Sim msg process: " + msg.getMessageHeader().type());
 	
+	}
+
+	@Override
+	public void addObserver(CtrlNode l) {
+		simListeners.add(l);
+	}
+
+	@Override
+	public void sendMessage(int msgType, Object payload) {
+		for (GridNode target : simListeners) {
+			RVMessage msg = new RVMessage(msgType, payload,this,target);
+			target.callRendezvous(msg);
+		}
 	}
 
 }
