@@ -29,41 +29,82 @@
  **************************************************************************/
 package fr.cnrs.iees.rvgrid.statemachine;
 
+import static java.util.logging.Level.INFO;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Logger;
+
+import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
+import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
 import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
 
 /**
- * Executes what should be executed at a state machine transition between states.
+ * A class able to understand a state machine and send it relevant messages
  * 
- * @author Jacques Gignoux - 14 août 2019
+ * @author Jacques Gignoux - 16 août 2019
  *
  */
-class StateTransitionProcess implements RendezvousProcess {
+public class StateMachineObserver extends AbstractGridNode {
 
-	private void transition(Iterable<Transition> transitionList,
-			StateMachineEngine<?> stateMachine, 
-			RVMessage message) {
-		for (Transition transition : transitionList ) {
-			if (transition.getEvent().getMessageType() == message.getMessageHeader().type()) {
-				boolean enabled = transition.getGuard().proceed(stateMachine, message);
-				if (enabled) {
-					transition.getProcedure().run(stateMachine, message);
-					transition.getToState().getProcedure().run(stateMachine, message);
-					stateMachine.setCurrentState(transition.getToState());
-				}
-			}
-		}
+	private static Logger log = Logger.getLogger(StateMachineObserver.class.getName());
+	// set level to WARNING to stop getting debug information
+	static { log.setLevel(INFO); } // debugging info
+	
+	private StateMachineEngine<? extends GridNode> stateMachine;
+	
+	/** JG-added 30/9/2015 - a convenience to quickly get the event codes from their names 	 */
+	private Map<String, Integer> eventCodes = new HashMap<String, Integer>();
+	
+	
+	private void recordEvents() {
+		Set<Event> events = new HashSet<Event>();
+		for (State s:stateMachine.getStates())
+			for (Transition t:s.getTransitions())
+				events.add(t.getEvent());
+		for (Transition t:stateMachine.getInitialPseudoStates())
+			events.add(t.getEvent());
+		for (Event e:events)
+			eventCodes.put(e.getName(),e.getMessageType());
 	}
 	
-	// this is executed when a state machine receives a message containing an event triggering
-	// a state change
-	@Override
-	public void execute(RVMessage message) {
-		StateMachineEngine<?> stateMachine = (StateMachineEngine<?>) message.getMessageHeader().target();
-		if (stateMachine.getCurrentState() == null)
-			transition(stateMachine.getInitialPseudoStates(),stateMachine,message);
-		else
-			transition(stateMachine.getCurrentState().getTransitions(),stateMachine,message);
+	public StateMachineObserver(StateMachineEngine<? extends GridNode> observed) {
+		super();
+		stateMachine = observed;
+		recordEvents();
+		addRendezvous(new RendezvousProcess() {
+			@Override
+			public void execute(RVMessage message) {
+				if (message.getMessageHeader().type()==stateMachine.STATUS_MESSAGE) {
+					State state = (State) message.payload();
+					onStatusMessage(state);
+				}
+			}
+		},stateMachine.STATUS_MESSAGE);
+	}
+	
+	/**
+	 * computes what happens when a state machine returns its state.
+	 * Meant to be overriden by descendants.
+	 * 
+	 * @param newState the new state in which the state machine arrived
+	 */
+	public void onStatusMessage(State newState) {
+		log.info("Oh! state machine now in state "+newState.getName());
+	}
+	
+	/**
+	 * sends an event to trigger a transition in the state machine
+	 * 
+	 * @param event the event to send
+	 */
+	public void sendEvent(Event event) {
+		log.info("Sending event "+event.getName()+" to state machine");
+		RVMessage eventMessage = new RVMessage(event.getMessageType(),null,this,stateMachine);
+		stateMachine.callRendezvous(eventMessage);
 	}
 
 }

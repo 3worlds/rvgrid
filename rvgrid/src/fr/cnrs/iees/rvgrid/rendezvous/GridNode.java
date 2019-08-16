@@ -29,12 +29,14 @@
  **************************************************************************/
 package fr.cnrs.iees.rvgrid.rendezvous;
 
+import fr.cnrs.iees.rvgrid.observer.Observer;
+
 /**
  * 
  * @author Jacques Gignoux - 14 août 2019
  *
  */
-public interface GridNode {
+public interface GridNode extends Observer {
 
 	/** NB: implementations must be synchronized */
 	public AbstractGridNode callRendezvous(RVMessage message);

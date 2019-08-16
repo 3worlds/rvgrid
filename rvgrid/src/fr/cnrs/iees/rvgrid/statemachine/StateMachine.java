@@ -36,7 +36,8 @@ package fr.cnrs.iees.rvgrid.statemachine;
  *
  */
 public interface StateMachine {
-	
+
+	public static final String INITIAL_PSEUDO_STATE = "<initial pseudo state>";
 	public Iterable<State> getStates();
 	public Iterable<Transition> getInitialPseudoStates(); // yes, this is correct
 	public Iterable<Transition> getTransitions();

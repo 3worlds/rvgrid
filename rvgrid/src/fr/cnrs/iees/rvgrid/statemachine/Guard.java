@@ -10,9 +10,6 @@ import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
  *
  */
 public class Guard {
-
-	// a convenience to retrieve the graph, basically
-	protected StateMachineNode myStateMachine = null;
 	
 	// Override to define your own procedures
 	//
@@ -20,16 +17,8 @@ public class Guard {
 		return true;
 	};
 
-	// override to define your own inits
-	//
-	public void initialise() {	}
-
 	public String toString() {
 		return "[Guard " + this.getClass().getSimpleName() + "]";
-	}
-	
-	public final void setStateMachine(StateMachineNode n) {
-		myStateMachine = n;
 	}
 
 }

@@ -6,7 +6,7 @@
  *       jacques.gignoux@upmc.fr                                          *
  *       ian.davies@anu.edu.au                                            * 
  *                                                                        *
- *  RVGRID is a A light-weight implementation of ADA's rendez-vous        *
+ *  RVGRID is a light-weight implementation of ADA's rendez-vous          *
  *  messaging pattern                                                     *
  *                                                                        *   
  **************************************************************************

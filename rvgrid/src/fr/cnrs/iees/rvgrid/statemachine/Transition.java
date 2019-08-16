@@ -13,76 +13,52 @@ public class Transition {
 	private Procedure procedure;
 	private Guard guard;
 	
+	// Constructors
+	// we are assuming here that transitions must be constructed after their states.
+	
 	public Transition(State toState, Event event, Procedure procedure, Guard guard) {
-		setToState(toState);
-		setEvent(event);
-		setProcedure(procedure);
-		setGuard(guard);
+		super();
+		this.toState = toState;
+		this.event =  event;
+		this.procedure = procedure;
+		this.guard = guard;
 	}
 
 	public Transition(State toState, Event event, Procedure procedure) {
-		setToState(toState);
-		setEvent(event);
-		setProcedure(procedure);
-		setGuard(new Guard());
+		this(toState,event,procedure,new Guard());
 	}
 
 	public Transition(State toState, Event event, Guard guard) {
-		setToState(toState);
-		setEvent(event);
-		setProcedure(new Procedure());
-		setGuard(guard);
+		this(toState,event,new Procedure(),guard);
 	}
 
 	public Transition(State toState, Event event) {
-		setToState(toState);
-		setEvent(event);
-		setProcedure(new Procedure());
-		setGuard(new Guard());
+		this(toState,event,new Procedure(),new Guard());
 	}
-
-	public Transition() {
-		setToState(null);
-		setEvent(null);
-		setProcedure(new Procedure());
-		setGuard(new Guard());
-	}
-
-	public void setToState(State toState) {
-		this.toState = toState;
-	}
+	
+	// accessors
 
 	public State getToState() {
 		return toState;
 	}
 
-	public void setEvent(Event event) {
-		this.event = event;
-	}
-	
 	public Event getEvent() {
 		return event;
 	}
 
-	public void setProcedure(Procedure procedure) {
-		this.procedure = procedure;
-	}
-	
 	public Procedure getProcedure() {
 		return procedure;
-	}
-	
-	public void setGuard(Guard guard) {
-		this.guard = guard;
 	}
 	
 	public Guard getGuard() {
 		return guard;
 	}
-	
 
+	// Object
+
+	@Override
 	public String toString() {
 		return "[Transition to " + toState + " in response to " + event + " calling " + procedure + "]";
 	}
-	
+
 }

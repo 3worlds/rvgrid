@@ -1,64 +1,93 @@
 package fr.cnrs.iees.rvgrid.statemachine;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import fr.cnrs.iees.rvgrid.RvgridException;
+import fr.ens.biologie.generic.Sealable;
 
 /**
  * A discrete state characteristic of a state machine
  *  
  * @author Shayne Flint - 2012
+ * 			refactored by J. Gignoux - Aug. 2019
  *
  */
-public class State {
-
+public final class State implements Sealable {
+	
+	private boolean sealed = false;
 	private String name;
 	private Procedure procedure;
-	private LinkedList<Transition> transitionList = new LinkedList<Transition>();
+	private List<Transition> transitionList = new ArrayList<Transition>();
 
+	// Constructors
+	// NB states must be created before transitions, then transitions are added through the
+	// addTransition method
+	
 	public State(String name, Procedure procedure) {
-		setName(name);
-		setProcedure(procedure);
+		super();
+		this.name = name;
+		this.procedure = procedure;
 	}
 	
 	public State(String name) {
-		setName(name);
-		setProcedure(new Procedure());
+		this(name,new Procedure());
 	}
 	
-	public State() {
-		setName(this.getClass().getSimpleName());
-		setProcedure(new Procedure());
+	// initialisation methods
+	
+	public void addTransition(Transition transition) {
+		if (!sealed)
+			transitionList.add(transition);
+		else
+			throw new RvgridException("State: attempt to modify sealed data");
 	}
 	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+	// other methods
+
 	public String getName() {
 		return name;
-	}
-	
-	public void setProcedure(Procedure procedure) {
-		this.procedure = procedure;
 	}
 	
 	public Procedure getProcedure() {
 		return procedure;
 	}
 	
-	public void addTransition(Transition transition) {
-		transitionList.add(transition);
-	}
-
-	public LinkedList<Transition> getTransitions() {
+	public List<Transition> getTransitions() {
 		return transitionList;
-	}
-	
-	public String toString() {
-		return "[State " + name + " with " + procedure + "]";
 	}
 	
 	public boolean isQuiescent() {
 		return transitionList.size() == 0;
+	}
+
+	// Object
+	
+	@Override
+	public String toString() {
+		return "[State " + name + " with " + procedure + "]";
+	}
+	
+	// Sealable
+
+	@Override
+	public Sealable seal() {
+		// check all outgoing transitions have a different event
+		Set<Event> events = new HashSet<Event>();
+		for (Transition t:transitionList)
+			if (!events.add(t.getEvent()))
+				throw new RvgridException("Error in state machine design: state '"+name
+					+"' has two outgoing transition triggered by the same event '"
+					+t.getEvent().getName()+"'");
+		sealed = true;
+		return this;
+	}
+
+	@Override
+	public boolean isSealed() {
+		return sealed;
 	}
 	
 }

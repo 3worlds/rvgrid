@@ -51,6 +51,7 @@ public abstract class AbstractGridNode implements GridNode {
 		/**
 		 * Duplicate the process entry for each type. Not sure when this would be the case
 		 * unless a process uses a switch statement on msg type?
+		 * yes, the use case works if payloads are different
 		 */
 		for (int type : types)
 			rendezvousProcesses.put(type, process);
