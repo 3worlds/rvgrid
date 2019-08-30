@@ -29,7 +29,7 @@ public class StateMachineEngine<O extends GridNode>
 	
 	/** this is the message code used to send information about states to this class instance
 	 * observers. It is set in the constructor to max(event types)+1 */
-	int STATUS_MESSAGE = 0;
+	protected int STATUS_MESSAGE = 0;
 	
 	private Set<O> stateMachineListenerNodeList = new HashSet<O>();
 	private   List<State>      stateList = new ArrayList<State>();
