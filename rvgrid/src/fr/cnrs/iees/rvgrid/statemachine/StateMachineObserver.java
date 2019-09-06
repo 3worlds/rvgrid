@@ -29,8 +29,6 @@
  **************************************************************************/
 package fr.cnrs.iees.rvgrid.statemachine;
 
-import static java.util.logging.Level.INFO;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -41,6 +39,7 @@ import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
 import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
+import fr.ens.biologie.generic.utils.Logging;
 
 /**
  * A class able to understand a state machine and send it relevant messages
@@ -50,9 +49,7 @@ import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
  */
 public class StateMachineObserver extends AbstractGridNode {
 
-	private static Logger log = Logger.getLogger(StateMachineObserver.class.getName());
-	// set level to WARNING to stop getting debug information
-	static { log.setLevel(INFO); } // debugging info
+	private static Logger log = Logging.getLogger(StateMachineObserver.class);
 	
 	private StateMachineEngine<? extends GridNode> stateMachine;
 	

@@ -13,6 +13,7 @@ import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
 import fr.ens.biologie.generic.Resettable;
+import fr.ens.biologie.generic.utils.Logging;
 
 /**
  * @author Shayne Flint - 2012
@@ -23,7 +24,7 @@ public class StateMachineEngine<O extends GridNode>
 		extends AbstractGridNode 
 		implements Resettable, StateMachine, Observable<O> {
 
-	private static Logger log = Logger.getLogger(StateMachineEngine.class.getName());
+	private static Logger log = Logging.getLogger(StateMachineEngine.class);
 	// set level to WARNING to stop getting debug information
 	static { log.setLevel(INFO); } // debugging info
 	

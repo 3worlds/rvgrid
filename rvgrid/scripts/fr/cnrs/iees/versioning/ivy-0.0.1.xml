@@ -1,5 +1,5 @@
 <!--===================================================================================
- ant and ivy scripts for project <rvgrid> version 0.0.2 (Fri Sep 06 10:59:37 CEST 2019)
+ ant and ivy scripts for project <rvgrid> version 0.0.1 (Wed Aug 14 10:39:44 CEST 2019)
  author: Jacques Gignoux <jacques.gignoux@upmc.fr>
 
  CAUTION: this file is generated - DO NOT EDIT!
@@ -13,7 +13,7 @@
 
 	<info	organisation="fr.cnrs.iees.rvgrid"
 			module="rvgrid"
-			revision="0.0.2"
+			revision="0.0.1"
 			status="integration">
 		<license name="gpl3" url="https://www.gnu.org/licenses/gpl-3.0.txt"/>
 		<description>A light-weight implementation of ADA's rendez-vous messaging pattern</description>
@@ -30,7 +30,7 @@
 	</publications>
 
 	<dependencies>
-		<dependency org="fr.ens.biologie" name="generics" rev="[0.1.11,)"/>
+		<dependency org="fr.ens.biologie" name="generics" rev="[0.1.10,)"/>
 	</dependencies>
 
 </ivy-module>
