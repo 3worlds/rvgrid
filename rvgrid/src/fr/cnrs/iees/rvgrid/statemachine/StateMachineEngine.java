@@ -26,7 +26,7 @@ public class StateMachineEngine<O extends GridNode>
 
 	private static Logger log = Logging.getLogger(StateMachineEngine.class);
 	// set level to WARNING to stop getting debug information
-	static { log.setLevel(INFO); } // debugging info
+	//static { log.setLevel(INFO); } // debugging info
 	
 	/** this is the message code used to send information about states to this class instance
 	 * observers. It is set in the constructor to max(event types)+1 */
