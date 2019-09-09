@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import static java.util.logging.Level.*;
 import java.util.logging.Logger;
 
 import fr.cnrs.iees.rvgrid.RvgridException;
@@ -25,8 +24,6 @@ public class StateMachineEngine<O extends GridNode>
 		implements Resettable, StateMachine, Observable<O> {
 
 	private static Logger log = Logging.getLogger(StateMachineEngine.class);
-	// set level to WARNING to stop getting debug information
-	//static { log.setLevel(INFO); } // debugging info
 	
 	/** this is the message code used to send information about states to this class instance
 	 * observers. It is set in the constructor to max(event types)+1 */
