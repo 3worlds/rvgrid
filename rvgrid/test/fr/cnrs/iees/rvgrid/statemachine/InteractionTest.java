@@ -88,7 +88,7 @@ public class InteractionTest {
 		finished.addTransition(new Transition(quitting,quit));
 		finished.addTransition(new Transition(waiting,reset));
 		StateMachineEngine<GridNode> sm = new StateMachineEngine<GridNode>(ips,waiting, stepping,pausing,running,quitting,finished);
-		StateMachineObserver obs = new StateMachineObserver(sm);
+		StateMachineController obs = new StateMachineController(sm);
 		sm.addObserver(obs);
 		String commandList = "exit,"+run.getName()+","
 			+step.getName()+","

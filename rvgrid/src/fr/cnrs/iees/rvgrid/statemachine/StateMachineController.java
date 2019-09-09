@@ -29,22 +29,68 @@
  **************************************************************************/
 package fr.cnrs.iees.rvgrid.statemachine;
 
-import fr.cnrs.iees.rvgrid.observer.Observer;
+import java.util.logging.Logger;
+
+import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
+import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
+import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
+import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
+import fr.ens.biologie.generic.utils.Logging;
 
 /**
- * A interface for objects able to understand the various states of a StateMachine
+ * A class able to understand a state machine and send it relevant messages
  * 
  * @author Jacques Gignoux - 16 août 2019
  *
  */
-public interface StateMachineObserver extends Observer {
+public class StateMachineController extends AbstractGridNode implements StateMachineObserver {
 
+	private static Logger log = Logging.getLogger(StateMachineController.class);
+	
+	private StateMachineEngine<? extends GridNode> stateMachine;
+		
+	public StateMachineController(StateMachineEngine<? extends GridNode> observed) {
+		super();
+		stateMachine = observed;
+		addRendezvous(new RendezvousProcess() {
+			@Override
+			public void execute(RVMessage message) {
+				if (message.getMessageHeader().type()==stateMachine.STATUS_MESSAGE) {
+					State state = (State) message.payload();
+					onStatusMessage(state);
+				}
+			}
+		},stateMachine.STATUS_MESSAGE);
+	}
+	
 	/**
 	 * computes what happens when a state machine returns its state.
 	 * Meant to be overriden by descendants.
 	 * 
-	 * @param state the new state in which the state machine arrived
+	 * @param newState the new state in which the state machine arrived
 	 */
-	public void onStatusMessage(State state);
+	@Override
+	public void onStatusMessage(State newState) {
+		log.info("Oh! state machine now in state "+newState.getName());
+	}
+	
+	/**
+	 * sends an event to trigger a transition in the state machine
+	 * 
+	 * @param event the event to send
+	 */
+	public void sendEvent(Event event) {
+		log.info("Sending event "+event.getName()+" to state machine");
+		RVMessage eventMessage = new RVMessage(event.getMessageType(),null,this,stateMachine);
+		stateMachine.callRendezvous(eventMessage);
+	}
+	
+	public int statusMessageCode() {
+		return stateMachine.STATUS_MESSAGE;
+	}
+	
+	public StateMachineEngine<? extends GridNode> stateMachine() {
+		return stateMachine;
+	}
 
 }
