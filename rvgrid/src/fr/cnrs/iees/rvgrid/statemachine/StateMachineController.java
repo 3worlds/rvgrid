@@ -43,15 +43,18 @@ import fr.ens.biologie.generic.utils.Logging;
  * @author Jacques Gignoux - 16 août 2019
  *
  */
-public class StateMachineController extends AbstractGridNode implements StateMachineObserver {
+public class StateMachineController 
+		extends AbstractGridNode 
+		implements StateMachineObserver {
 
 	private static Logger log = Logging.getLogger(StateMachineController.class);
 	
-	private StateMachineEngine<? extends GridNode> stateMachine;
+	private StateMachineEngine<StateMachineController> stateMachine;
 		
-	public StateMachineController(StateMachineEngine<? extends GridNode> observed) {
+	public StateMachineController(StateMachineEngine<StateMachineController> observed) {
 		super();
 		stateMachine = observed;
+		stateMachine.addObserver(this);
 		addRendezvous(new RendezvousProcess() {
 			@Override
 			public void execute(RVMessage message) {

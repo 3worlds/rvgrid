@@ -35,8 +35,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
-
 /**
  * A test case for a state machine in interaction with a controller / observer
  * 
@@ -87,7 +85,8 @@ public class InteractionTest {
 		pausing.addTransition(new Transition(quitting,quit));
 		finished.addTransition(new Transition(quitting,quit));
 		finished.addTransition(new Transition(waiting,reset));
-		StateMachineEngine<GridNode> sm = new StateMachineEngine<GridNode>(ips,waiting, stepping,pausing,running,quitting,finished);
+		StateMachineEngine<StateMachineController> sm = 
+			new StateMachineEngine<StateMachineController>(ips,waiting, stepping,pausing,running,quitting,finished);
 		StateMachineController obs = new StateMachineController(sm);
 		sm.addObserver(obs);
 		String commandList = "exit,"+run.getName()+","

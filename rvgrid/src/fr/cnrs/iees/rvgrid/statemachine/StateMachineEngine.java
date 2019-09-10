@@ -130,13 +130,6 @@ public class StateMachineEngine<O extends GridNode>
 		getReallyReallyFinallyReady();
 	}
 
-//	private void sendStructureToListeners() {
-//		for (GridNode l : stateMachineListenerNodeList) {
-//			RVMessage structureMessage = new RVMessage(StateTransitionProcess.STATE_MACHINE_STRUCTURE,this,this,l);
-//			l.callRendezvous(structureMessage);			
-//		}
-//	}
-	
 	// Resettable
 
 	/**
@@ -266,5 +259,8 @@ public class StateMachineEngine<O extends GridNode>
 		throw new RvgridException("StateModel: Cannot find state named '" + name + "'");
 	}
 
+	public int statusMessageCode() {
+		return STATUS_MESSAGE;
+	}
 
 }
