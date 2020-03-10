@@ -130,17 +130,6 @@ public class StateMachineEngine<O extends GridNode>
 		getReallyReallyFinallyReady();
 	}
 
-	// Resettable
-
-	/**
-	 * For specific house-keeping in descendants. It is expected to be called whenever the StateMachine 
-	 * goes into initialPseudoState.
-	 * Of course other uses are possible, the consistency is left to the user
-	 */
-	@Override
-	public void reset() {
-	}
-
 	// StateMachine
 
 	@Override
