@@ -49,5 +49,9 @@ public interface Observable<P extends Observer> {
 	 * @param payload a payload to send to all Observers
 	 */
 	public void sendMessage(int msgType, Object payload);
+	
+	public void removeObserver(P listener);
+
+	public boolean hasObservers();
 
 }

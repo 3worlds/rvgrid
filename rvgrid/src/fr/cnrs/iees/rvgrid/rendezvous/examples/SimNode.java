@@ -73,4 +73,14 @@ public class SimNode extends AbstractGridNode
 		}
 	}
 
+	@Override
+	public void removeObserver(CtrlNode listener) {
+		simListeners.remove(listener);
+	}
+
+	@Override
+	public boolean hasObservers() {
+		return !simListeners.isEmpty();
+	}
+
 }

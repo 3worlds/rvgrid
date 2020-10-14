@@ -281,4 +281,14 @@ public class StateMachineEngine<O extends GridNode>
 		return STATUS_MESSAGE;
 	}
 
+	@Override
+	public void removeObserver(O listener) {
+		stateMachineListenerNodeList.remove(listener);
+	}
+
+	@Override
+	public boolean hasObservers() {
+		return !stateMachineListenerNodeList.isEmpty();
+	}
+
 }

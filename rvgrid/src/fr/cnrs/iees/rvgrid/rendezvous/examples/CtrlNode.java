@@ -71,4 +71,14 @@ public class CtrlNode extends AbstractGridNode implements Observer, Observable<S
 			target.callRendezvous(msg);
 		}
 	}
+
+	@Override
+	public void removeObserver(SimNode listener) {
+		ctrlListeners.remove(listener);
+	}
+
+	@Override
+	public boolean hasObservers() {
+		return !ctrlListeners.isEmpty();
+	}
 }
