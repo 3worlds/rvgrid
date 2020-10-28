@@ -29,6 +29,8 @@
  **************************************************************************/
 package fr.cnrs.iees.rvgrid.observer;
 
+import java.util.Collection;
+
 /**
  * Such a class will send messages to an Observer of the specified type.
  * 
@@ -53,5 +55,7 @@ public interface Observable<P extends Observer> {
 	public void removeObserver(P listener);
 
 	public boolean hasObservers();
+	
+	public Collection<P> observers();
 
 }

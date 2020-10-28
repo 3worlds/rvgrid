@@ -30,6 +30,8 @@
 package fr.cnrs.iees.rvgrid.rendezvous.examples;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
@@ -41,7 +43,7 @@ import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
 
 public class SimNode extends AbstractGridNode
 		implements Observable<CtrlNode>, Observer {
-	private List<GridNode> simListeners;
+	private List<CtrlNode> simListeners;
 
 	public SimNode() {
 		simListeners = new ArrayList<>();
@@ -81,6 +83,11 @@ public class SimNode extends AbstractGridNode
 	@Override
 	public boolean hasObservers() {
 		return !simListeners.isEmpty();
+	}
+
+	@Override
+	public Collection<CtrlNode> observers() {
+		return Collections.unmodifiableCollection(simListeners);
 	}
 
 }
