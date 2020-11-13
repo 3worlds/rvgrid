@@ -2,13 +2,13 @@
  *  RVGRID - A light-weight rendezvous system                             *
  *                                                                        *
  *  Copyright 2018: Shayne Flint, Jacques Gignoux & Ian D. Davies         *
- *       shayne.flint@anu.edu.au                                          * 
+ *       shayne.flint@anu.edu.au                                          *
  *       jacques.gignoux@upmc.fr                                          *
- *       ian.davies@anu.edu.au                                            * 
+ *       ian.davies@anu.edu.au                                            *
  *                                                                        *
  *  RVGRID is a A light-weight implementation of ADA's rendez-vous        *
  *  messaging pattern                                                     *
- *                                                                        *   
+ *                                                                        *
  **************************************************************************
  *  This file is part of RVGRID.                                          *
  *                                                                        *
@@ -20,7 +20,7 @@
  *  RVGRID is distributed in the hope that it will be useful,             *
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of        *
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *  GNU General Public License for more details.                          *                         
+ *  GNU General Public License for more details.                          *
  *                                                                        *
  *  You should have received a copy of the GNU General Public License     *
  *  along with RVGRID.                                                    *
@@ -50,23 +50,23 @@ import fr.ens.biologie.generic.utils.Logging;
  * 			refactored by J. Gignoux  - Aug. 2019.
  *
  */
-public class StateMachineEngine<O extends GridNode> 
-		extends AbstractGridNode 
+public class StateMachineEngine<O extends GridNode>
+		extends AbstractGridNode
 		implements Resettable, StateMachine, Observable<O> {
 
 	private static Logger log = Logging.getLogger(StateMachineEngine.class);
-	
+
 	/** this is the message code used to send information about states to this class instance
 	 * observers. It is set in the constructor to max(event types)+1 */
 	protected int STATUS_MESSAGE = 0;
-	
+
 	private Set<O> stateMachineListenerNodeList = new HashSet<O>();
 	private   List<State>      stateList = new ArrayList<State>();
 	private   List<Transition> initialPseudoStateList = new ArrayList<Transition>();
 	protected State            currentState = null;
 
 	// Constructors and initialisation methods
-	
+
 	// checks that all events have a different messageType index
 	private Set<Event> checkEvents() {
 		Set<Event> events = new HashSet<Event>();
@@ -76,7 +76,7 @@ public class StateMachineEngine<O extends GridNode>
 		for (Transition t:initialPseudoStateList)
 			events.add(t.getEvent());
 		for (Event e:events)
-			for (Event ee:events) 
+			for (Event ee:events)
 				if ((e!=ee)&(e.getMessageType()==ee.getMessageType()))
 					throw new RvgridException("Error in state machine design: "
 						+ "events '" + e.getName()
@@ -85,7 +85,7 @@ public class StateMachineEngine<O extends GridNode>
 						+ "'");
 		return events;
 	}
-	
+
 	// checks that all transitions go to states recorded in this state machine
 	private void checkTransitions() {
 		for (State s:stateList)
@@ -95,7 +95,7 @@ public class StateMachineEngine<O extends GridNode>
 							+ "' in transition triggered by event '" + t.getEvent().getName()
 							+ "' is unknown from the state machine");
 	}
-	
+
 	// just make sure all constructors go through these steps
 	private void getReallyReallyFinallyReady() {
 		Set<Event> events = checkEvents();
@@ -106,15 +106,15 @@ public class StateMachineEngine<O extends GridNode>
 			eventix[i] = e.getMessageType();
 			if (eventix[i]>maxEventix)
 				maxEventix = eventix[i];
-			i++;			
+			i++;
 		}
 		STATUS_MESSAGE = maxEventix+1;
 		checkTransitions();
 		addRendezvous(new StateTransitionProcess(),eventix);
-		log.info(toString()+" initialised");
+		log.info(()->toString()+" initialised");
 	}
-	
-	
+
+
 	/**
 	 * Basic constructor with only one initial pseudo-state
 	 * @param initialPseudoState
@@ -129,7 +129,7 @@ public class StateMachineEngine<O extends GridNode>
 		initialPseudoStateList.add(initialPseudoState);
 		getReallyReallyFinallyReady();
 	}
-	
+
 	/**
 	 * Basic constructor with only one initial pseudo-state
 	 * @param initialPseudoState
@@ -175,7 +175,7 @@ public class StateMachineEngine<O extends GridNode>
 
 	@Override
 	public void setCurrentState(State state) {
-		log.info("Now entering state "+state.getName());
+		log.info(()->"Now entering state "+state.getName());
 		currentState = state;
 		// send new state to observers
 		sendMessage(STATUS_MESSAGE,currentState);
@@ -189,7 +189,7 @@ public class StateMachineEngine<O extends GridNode>
 	@Override
 	public List<Transition> getTransitions() {
 		List<Transition> result = new ArrayList<Transition>();
-		for (State s : stateList) 
+		for (State s : stateList)
 			result.addAll(s.getTransitions());
 		return result;
 	}
@@ -214,8 +214,8 @@ public class StateMachineEngine<O extends GridNode>
 		}
 		return true;
 	}
-	
-	// Observable 
+
+	// Observable
 
 	@Override
 	public void addObserver(O listener) {
@@ -225,14 +225,14 @@ public class StateMachineEngine<O extends GridNode>
 	@Override
 	public void sendMessage(int msgType, Object payload) {
 		for (O l : stateMachineListenerNodeList) {
-			log.info("Sending status to observer "+l.toString());
+			log.info(()->"Sending status to observer "+l.toString());
 			RVMessage statusMessage = new RVMessage(msgType,payload,this,l);
 			l.callRendezvous(statusMessage);
 		}
 	}
 
 	// Object
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -250,9 +250,9 @@ public class StateMachineEngine<O extends GridNode>
 		sb.append(')');
 		return sb.toString();
 	}
-	
+
 	// Local
-	
+
 	public String currentStateString() {
 		String result = "[Current State";
 		if (currentState == null)
@@ -266,7 +266,7 @@ public class StateMachineEngine<O extends GridNode>
 			return result;
 		}
 	}
-	
+
 	public State findState(String name) {
 		if (name == null || name.equals(INITIAL_PSEUDO_STATE)) {
 			return null;
