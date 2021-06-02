@@ -4,6 +4,6 @@
  * finite-state machine</a>.
  * 
  * @author Jacques Gignoux - 1 juin 2021
- *
+ * 
  */
 package fr.cnrs.iees.rvgrid;

@@ -46,7 +46,7 @@ import fr.ens.biologie.generic.Resettable;
 import fr.ens.biologie.generic.utils.Logging;
 
 /**
- * @author Shayne Flint - 2012
+ * @author Shayne Flint - 2012<br/>
  * 			refactored by J. Gignoux  - Aug. 2019.
  *
  */
@@ -147,7 +147,7 @@ public class StateMachineEngine<O extends GridNode>
 
 	/**
 	 * generic constructor with many initial pseudo-states
-	 * @param initialPseudoState
+	 * @param initialPseudoStates
 	 * @param states
 	 */
 	public StateMachineEngine(Iterable<Transition> initialPseudoStates, Iterable<State> states) {

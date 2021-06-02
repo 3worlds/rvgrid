@@ -20,8 +20,10 @@
  * 
  * <p>To use the rendezvous pattern you must declare 
  * your own descendant of {@code AbstractGridNode} and  {@code RendezvousProcess}. 
- * See the {@linkplain fr.cnrs.iees.rvgrid.rendezvous.examples} 
- * and {@linkplain fr.cnrs.iees.rvgrid.statemachine} packages for examples of implementation.</p>
+ * See examples of implementation in referenced packages below.</p>
+ * 
+ * @see fr.cnrs.iees.rvgrid.rendezvous.examples
+ * @see fr.cnrs.iees.rvgrid.statemachine
  * 
  * @author Jacques Gignoux - 1 juin 2021
  *
