@@ -35,10 +35,28 @@ import java.util.Map;
 import java.util.Queue;
 
 /**
- * Instances of this class can exchange RVMessage at rendezvous and execute a RendezVousProcess
- * matching the message type.
+ * <p>Implementation of {@link GridNode}.</p>
  * 
- * @author Ian Davies - 14 août 2019
+ * <p>Instances of this class can exchange {@link RVMessage} at rendezvous and execute a 
+ * {@link RendezvousProcess} matching the message type.</p>
+ * 
+ * <p>Instances of this class register types of messages matching particular actions 
+ * (= instances of {@link RendezvousProcess}) through the {@code addRendezvous} method. 
+ * These types are those that this instance are able
+ * to process.</p>
+ * <p>Whenever a message is received (through a call to the {@code callRendezvous} method), it is 
+ * checked against message types: if the type is already registered, the matching {@code RendezvousProcess}
+ * is executed; if not, the message is put in a queue for possible later registering of this message
+ * type. The next time  {@code addRendezvous} is called, it will attempt to process all messages
+ * contained in the queue.
+ * </p>
+ * <p>Of course one should be careful to always call {@code callRendezvous} with a message type
+ * that is or will be registered with this instance; otherwise messages can pile up indefinitely.</p>
+ * 
+ * <p>This class should be overriden by specialised descendants for any particular implementation
+ * of the {@link fr.cnrs.iees.rvgrid.rendezvous rendezvous pattern}.</p>
+ * 
+ * @author Ian Davies - 14 août 2019<br/>
  * 			after Shayne Flint, 2012
  *
  */
@@ -47,6 +65,13 @@ public abstract class AbstractGridNode implements GridNode {
 	protected Queue<RVMessage> messageQueue = new LinkedList<>();
 	private Map<Integer, RendezvousProcess> rendezvousProcesses = new HashMap<>();
 
+	/**
+	 * Registers a message type in this instance
+	 * 
+	 * @param process the action to undertake on a rendezvous
+	 * @param types the type attached to the process
+	 * @return this instance for agile programming
+	 */
 	public AbstractGridNode addRendezvous(RendezvousProcess process, int... types) {
 		/**
 		 * Duplicate the process entry for each type. Not sure when this would be the case
@@ -62,7 +87,14 @@ public abstract class AbstractGridNode implements GridNode {
 		return this;
 	}
 
-	// Ideally, this should NEVER be overriden. Too brittle.
+	/**
+	 * This method implements a simple message passing that works for single or multi-thread applications.
+	 * It has been made {@code final} as it is very sensitive code and should not be overriden 
+	 * unless you are a specialist of the rendezvous pattern. In case you want to implement
+	 * inter-process capabilities, we suggest you define a sister class to this one with the
+	 * <em>adhoc</em> {@code callRendezVous} method.
+	 */
+	@Override
 	public final synchronized AbstractGridNode callRendezvous(RVMessage message) {
 		RendezvousProcess process = rendezvousProcesses.get(message.getMessageHeader().type());
 		if (process == null)

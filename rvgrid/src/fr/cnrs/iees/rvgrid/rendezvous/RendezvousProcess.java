@@ -30,14 +30,20 @@
 package fr.cnrs.iees.rvgrid.rendezvous;
 
 /**
- * A process that will be executed at a rendezvous
+ * Any action that must be executed at a rendezvous.
  * 
- * @author Ian Davies - 14 août 2019
+ * @author Ian Davies - 14 août 2019<br/>
  * 			after Shayne Flint, 2012
  *
  */
 public interface RendezvousProcess {
 	
+	/**
+	 * The code that will be executed at a rendezvous, i.e. when 
+	 * {@link GridNode}.{@link GridNode#callRendezvous(RVMessage) callRendezvous(...)}  is called.
+	 * 
+	 * @param message any relevant data to needed by this process
+	 */
 	public void execute(RVMessage message);
 
 }

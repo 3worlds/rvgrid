@@ -30,10 +30,13 @@
 package fr.cnrs.iees.rvgrid.rendezvous;
 
 /**
- * Messages exchanged between two GridNodes at rendezvous.
- * May have descendants
+ * <p>Data exchanged between two {@link GridNode}s at rendezvous.</p>
+ * <p>Messages contain a type that is used by the {@code GridNode} to decide which {@link RendezvousProcess}
+ * must be activated to process them at a rendezvous, i.e. when 
+	 * {@code GridNode}.{@link GridNode#callRendezvous(RVMessage) callRendezvous(...)} is called. 
+ * This class can be used as is or may have descendants for specific applications.</p>
  * 
- * @author Ian Davies - 14 août 2019
+ * @author Ian Davies - 14 août 2019<br/>
  * 			after Shayne Flint, 2012
  *
  */
@@ -41,15 +44,34 @@ public class RVMessage {
 	private RVMessageHeader messageHeader;
 	private Object payload;
 
+	/**
+	 * Messages must be constructed knowing their type, caller and receiver. They can carry information
+	 * (payload) of any kind.
+	 * 
+	 * @param type the type of {@link RendezvousProcess} to call at rendezvous
+	 * @param payload any additional information to pass to the 
+	 *    {@code RendezvousProcess}.{@link RendezvousProcess#execute(RVMessage) execute(...)} method
+	 * @param source the caller {@code GridNode}
+	 * @param target the receiver {@code GridNode}
+	 */
 	public RVMessage(int type,Object payload, GridNode source, GridNode target) {
 		this.messageHeader = new RVMessageHeader(type,source,target);
 		this.payload=payload;
 	}
 
+	/**
+	 * Getter for the {@link RVMessageHeader} which contains the caller, receiver and type information
+	 * @return the {@code RVMessageHeader} for this message
+	 */
 	public RVMessageHeader getMessageHeader() {
 		return messageHeader;
 	}
 	
+	/**
+	 * Getter for the additional information contained in the message.
+	 * @return the additional information to pass to the 
+	 *    {@code RendezvousProcess}.{@link RendezvousProcess#execute(RVMessage) execute(...)} method
+	 */
 	public Object payload() {
 		return payload;
 	}

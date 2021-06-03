@@ -32,6 +32,7 @@ package fr.cnrs.iees.rvgrid;
 import fr.ens.biologie.generic.Textable;
 
 /**
+ * The {@link java.lang.Exception Exception} class specific to this library.
  * 
  * @author Jacques Gignoux - 14 août 2019
  *
@@ -43,18 +44,36 @@ public class RvgridException extends RuntimeException {
 	 */
 	private static final long serialVersionUID = 1724666389814181944L;
 
+	/**
+	 * Instantiate an exception on an object with a message
+	 * @param item the item which caused the problem
+	 * @param message the error message
+	 */
 	public RvgridException(Textable item, String message) {
 		super("[on " + item + "]\n[" + message + "]");
 	}
 
+	/**
+	 * Instantiate an exception with a message
+	 * @param message the error message
+	 */
 	public RvgridException(String message) {
 		super("[" + message + "]");
 	}
 
+	/**
+	 * Exception wrapper.
+	 * @param e the exception to wrap
+	 */
 	public RvgridException(Exception e) {
 		super(e);
 	}
 
+	/**
+	 * Exception wrapper with additional information
+	 * @param message the error message
+	 * @param e the exception to wrap
+	 */
 	public RvgridException(String message, Exception e) {
 		super("[" + message + "]\n[original exception: " + e + "]");
 		e.printStackTrace();

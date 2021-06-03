@@ -30,7 +30,9 @@
 package fr.cnrs.iees.rvgrid.observer;
 
 /**
- * Use this class to be able to observe a particular kind of Observable
+ * <p>An interface for objects that can observe an {@link Observable}, i.e. receive messages from it
+ * about its state.</p>
+ * <p>This class must be overriden to implement the {@link fr.cnrs.iees.rvgrid.observer observer pattern}.</p>
  * 
  * @author Jacques Gignoux - 14 août 2019
  *

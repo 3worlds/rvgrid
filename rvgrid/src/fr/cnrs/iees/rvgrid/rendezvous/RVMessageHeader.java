@@ -30,9 +30,10 @@
 package fr.cnrs.iees.rvgrid.rendezvous;
 
 /**
- * Message header for rendez vous messages. No descendants.
+ * Message header for rendezvous messages. No descendants. Can only be created by a call to
+ * the constructor {@link RVMessage#RVMessage(int, Object, GridNode, GridNode) RVMessage(...)}.
  * 
- * @author Ian davies - 14 août 2019
+ * @author Ian davies - 14 août 2019<br/>
  * 			after Shayne Flint, 2012
  *
  */
@@ -47,14 +48,26 @@ public final class RVMessageHeader {
 		this.target = target;
 	}
 	
+	/**
+	 * The type of the {@code RendezvousProcess} to execute at rendezvous.
+	 * @return the type
+	 */
 	public int type() {
 		return type;
 	}
 	
+	/**
+	 * The caller {@code GridNode}.
+	 * @return the sender of this message
+	 */
 	public GridNode source() {
 		return source;
 	}
 
+	/**
+	 * The {@code GridNode} to which this message is sent
+	 * @return the receiver of this message
+	 */
 	public GridNode target() {
 		return target;
 	}

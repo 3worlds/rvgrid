@@ -32,13 +32,28 @@ package fr.cnrs.iees.rvgrid.rendezvous;
 import fr.cnrs.iees.rvgrid.observer.Observer;
 
 /**
+ * <p>The extension of {@link Observer} required by the {@link fr.cnrs.iees.rvgrid.rendezvous rendezvous pattern}.</p>
+ * <p>Instances implementing this interface have the capability to call for a rendezvous on another 
+ * {@code GridNode}.
+ * </p>
+ * 
+ * <p>{@code GridNode}s can reside in different threads. When a rendezvous is called, data is transferred
+ * to the other GridNode and an atomic (synchronized) action is executed. This enables inter-thread 
+ * communication in a multi-thread context, or simple message passing in a single thread context.</p>
  * 
  * @author Jacques Gignoux - 14 août 2019
  *
  */
 public interface GridNode extends Observer {
 
-	/** NB: implementations must be synchronized */
+	/**
+	 * Calls a rendezvous on any GridNode registering this rendezvous type. 
+	 * <p><strong>CAUTION: implementations must be synchronized</strong></p>
+	 *
+	 * 
+	 * @param message the rendezvous message to pass to the recipient
+	 * @return this instance for agile programming
+	 */
 	public AbstractGridNode callRendezvous(RVMessage message);
 	
 }
