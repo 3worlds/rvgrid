@@ -38,7 +38,7 @@ import fr.cnrs.iees.rvgrid.RvgridException;
 import fr.ens.biologie.generic.Sealable;
 
 /**
- * A discrete state characteristic of a state machine
+ * A discrete state characteristic of a state machine.
  *  
  * @author Shayne Flint - 2012
  * 			refactored by J. Gignoux - Aug. 2019
@@ -51,22 +51,49 @@ public final class State implements Sealable {
 	private Procedure procedure;
 	private List<Transition> transitionList = new ArrayList<Transition>();
 
-	// Constructors
-	// NB states must be created before transitions, then transitions are added through the
-	// addTransition method
-	
+	/**
+	 * <p>States must be created before transitions, then transitions are added through the
+	 * {@linkplain State#addTransition addTransition(...)} method.</p>
+	 * <p>When entering a state, an action may be required. It is represented here by the 
+	 * {@linkplain Procedure} argument: every time this state is entered, the procedure will be
+	 * executed.</p>
+	 * 
+	 * @param name the name of this state
+	 * @param procedure the action performed when entering this state
+	 */
 	public State(String name, Procedure procedure) {
 		super();
 		this.name = name;
 		this.procedure = procedure;
 	}
 	
+	/**
+	 * <p>States must be created before transitions, then transitions are added through the
+	 * {@linkplain State#addTransition addTransition(...)} method.</p>
+	 * 
+	 * <p>Use this constructor when no action is taken on entering the state.</p>
+	 * 
+	 * @param name the name of this state
+	 */
 	public State(String name) {
 		this(name,new Procedure());
 	}
 	
 	// initialisation methods
 	
+	/**
+	 * <p>Add a transition to another state.</p>
+	 * <ol>
+	 * <li>Transitions can only be added while this instance is <em>unsealed</em> (cf. the
+	 * {@link Sealable} class). A call to the {@link State#seal seal()} method will
+	 * secure this instance by preventing further addition of any other transition.</li>
+	 * <li>All transitions must be triggered by a different {@link Event}. The 
+	 * {@code seal()} method will check for this condition and throw an Exception if it
+	 * is false.</li>
+	 * </ol>
+	 * 
+	 * @param transition
+	 */
 	public void addTransition(Transition transition) {
 		if (!sealed)
 			transitionList.add(transition);
@@ -76,18 +103,36 @@ public final class State implements Sealable {
 	
 	// other methods
 
+	/**
+	 * 
+	 * @return the state name
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * 
+	 * @return the procedure exectued when entering this state
+	 */
 	public Procedure getProcedure() {
 		return procedure;
 	}
 	
+	/**
+	 * 
+	 * @return the list of all transitions from this state to other states
+	 */
 	public List<Transition> getTransitions() {
 		return transitionList;
 	}
 	
+	/**
+	 * A state is <em>quiescent</em> when it has no transitions to any other state, i.e. when it
+	 * is a final state: there is no way to leave it.
+	 * 
+	 * @return true if this state is quiescent
+	 */
 	public boolean isQuiescent() {
 		return transitionList.size() == 0;
 	}

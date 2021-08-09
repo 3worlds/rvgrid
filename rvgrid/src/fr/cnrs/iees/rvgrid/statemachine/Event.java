@@ -30,7 +30,7 @@
 package fr.cnrs.iees.rvgrid.statemachine;
 
 /**
- * An event triggering a state transition
+ * An event triggering a state transition.
  * 
  * @author Shayne Flint - 2012
  *
@@ -41,41 +41,73 @@ public class Event {
 	private String name;
 	private boolean isInternal = false;
 	
+	/**
+	 * Use this constructor to instantiate <em>internal</em> events, i.e. events that are
+	 * created by the state machine they belong to. E.g., a 'check conditions' event may automatically
+	 * follow a 'save' or 'update' user action; 'check conditions' is internal as it doesnt depend
+	 * on any external intervention.
+	 *   
+	 * @param messageType the message type associated to this event. <strong>NB: all events in a state machine
+	 * must have a different messageType</strong>
+	 * @param name the name of this event, e.g. 'piss off' or 'blink'
+	 * @param internal true if the event is internal
+	 */
 	public Event(int messageType, String name, boolean internal) {
 		super();
 		this.messageType = messageType;
 		this.name = name;
 		this.isInternal = internal;
 	}
-	
+
+	/**
+	 * Use this constructor for <em>external</em> events, i.e. events that are created from
+	 * outside the state machine they belong to (e.g. events triggered by a mouse click of the user)
+	 * 
+	 * @param messageType the message type associated to this event. <strong>NB: all events in a state machine
+	 * must have a different messageType</strong>
+	 * @param name the name of this event, e.g. 'start' or 'blow up'
+	 */
 	public Event(int messageType, String name) {
 		this(messageType,name,false);
 	}
 	
+	/**
+	 * 
+	 * @return the message type associated to this event
+	 */
 	public int getMessageType() {
 		return messageType;
 	}
 	
+	/**
+	 * 
+	 * @return the event name
+	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * An event is internal when it is triggered by a Procedure of one of the states
-	 * @return
+	 * An event is <em>internal</em> when it is created by a {@link Procedure} contained in
+	 * the state machine it is recorded in.
+	 *  
+	 * @return true if this event is internal
 	 */
 	public boolean isInternal() {
 		return isInternal;	
 	}
 	
 	/**
-	 * An event is external when it is triggered by user (or some other external) intervention 
-	 * @return
+	 * An event is <em>external</em> when it is created from outside the state machine it is 
+	 * recorded in (e.g. by a user clicking on a button).
+	 *  
+	 * @return true if the event is external
 	 */
 	public boolean isExternal() {
 		return !isInternal;	
 	}
 		
+	@Override
 	public String toString() {
 		return "[Event name='" + name + "', messageType=" + messageType + "]";
 	}

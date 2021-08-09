@@ -41,10 +41,21 @@ import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
 import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
 
+/**
+ * <p>An example 'simulator' node.</p> 
+ * <p>This node understands two message types, {@link MSG_CTRL_TO_SIM1} and
+ * {@link MSG_CTRL_TO_SIM2} (cf. constructor). </p>
+ * @author Jacques Gignoux - 9 août 2021
+ *
+ */
 public class SimNode extends AbstractGridNode
 		implements Observable<CtrlNode>, Observer {
 	private List<CtrlNode> simListeners;
 
+	/**
+	 * This constructors sets a Rendezvous using a single {@link RendezvousProcess} in
+	 * response to its two message types.
+	 */
 	public SimNode() {
 		simListeners = new ArrayList<>();
 		this.addRendezvous(new RendezvousProcess() {

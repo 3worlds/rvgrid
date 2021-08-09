@@ -33,19 +33,27 @@ import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
 
 /**
- * an ancestor class to guards for state machines - run before calling a state procedure
+ * A guard is a condition checked at the entrance of a {@link State}, just before calling the state
+ * {@link Procedure}, i.e., the procedure will only be called if the guard returns true.
  * 
  * @author Shayne Flint - 2012
  *
  */
 public class Guard {
 	
-	// Override to define your own procedures
-	//
+	/**
+	 * Override this method in a descendant class to define your own guard. 
+	 * This one always returns true.
+	 * 
+	 * @param node the object which state is going to change (usually a {@link StateMachinneEngine}).
+	 * @param message the message carrying the event information
+	 * @return true if the state procedure is to be executed
+	 */
 	public boolean proceed(GridNode node, RVMessage message) {
 		return true;
 	};
 
+	@Override
 	public String toString() {
 		return "[Guard " + this.getClass().getSimpleName() + "]";
 	}

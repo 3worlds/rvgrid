@@ -30,33 +30,28 @@
 package fr.cnrs.iees.rvgrid.rendezvous.examples;
 
 /**
- * This is a MINIMAL impl of Shayne's rendezvous system. I use a hash table to
- * map msg type as the key to map to the required process. This may not always
- * be correct - wait and see.
+ * <p>Use this class {@code main(...)} method to run a very minimalistic example of 
+ * use of the Rendezvous pattern as implemented here.</p>
+ * <p>The following actions are performed:</p>
+ * <ul>
+ * <li>Four message types (static integers) are defined;</li>
+ * <li>Instance of {@linkplain SimNode} and {@linkplain CtrlNode} are created;</li>
+ * <li>Each instance records the other as an {@linkplain Observer};</li>
+ * <li>Four threads, each sending 10 messages between the two nodes, are instantiated;</li>
+ * <li>The four threads are started;</li>
+ * <li>Each node prints a brief text in the console when it receives a message.</li>
+ * </ul>
  * 
- * Rendezvous.java and RendezvousEntry.java are redundant with this approach and
- * have been removed. I've removed the timeout system (I think its purpose may
- * have been for ssh to remote systems - no longer envisioned). MessageHeader
- * just has the type int so it may seem useless to keep this class. I haven't
- * included the src/target id in the msg header but we may in future (i.e
- * multi-sim ctrl) - wait and see.
- * 
- * We still need to deal with crashed simulators but I don't think this is
- * something specific to this approach.
- * 
- * Multi-tasking takes place when producers/consumers are in they're own thread
- * (simulator/ui Platform.runLater() or some big data processing task). We just
- * need to make sure process.execute does not start something that takes a long
- * time. The approach should be thread-safe simply because callRendezvous is
- * Synchronized. I don't think it is safe to expect a pause or quit cmd to
- * interrupt simulations any time other than when a step is complete. Otherwise
- * its a mess.
  */
 
 public class Main {
+	/** Message type 1 from controller to simulator */
 	public static int MSG_CTRL_TO_SIM1 = 10;
+	/** Message type 2 from controller to simulator */
 	public static int MSG_CTRL_TO_SIM2 = 11;
+	/** Message type 1 from simulator to controller */
 	public static int MSG_SIM_TO_CTRL1 = 20;
+	/** Message type 2 from simulator to controller */
 	public static int MSG_SIM_TO_CTRL2 = 21;
 
 	public static void main(String[] args) {
@@ -65,7 +60,7 @@ public class Main {
 		ctrl.addObserver(sim);
 		sim.addObserver(ctrl);
 
-		int nMsgs = 100;
+		int nMsgs = 10;
 		Object payload = new Object();
 
 		Runnable task1 = new Runnable() {
