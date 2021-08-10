@@ -35,8 +35,8 @@ package fr.cnrs.iees.rvgrid.rendezvous.examples;
  * <p>The following actions are performed:</p>
  * <ul>
  * <li>Four message types (static integers) are defined;</li>
- * <li>Instance of {@linkplain SimNode} and {@linkplain CtrlNode} are created;</li>
- * <li>Each instance records the other as an {@linkplain Observer};</li>
+ * <li>Instance of {@link SimNode} and {@link CtrlNode} are created;</li>
+ * <li>Each instance records the other as an {@link fr.cnrs.iees.rvgrid.observer.Observer Observer};</li>
  * <li>Four threads, each sending 10 messages between the two nodes, are instantiated;</li>
  * <li>The four threads are started;</li>
  * <li>Each node prints a brief text in the console when it receives a message.</li>

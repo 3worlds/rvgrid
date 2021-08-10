@@ -45,7 +45,7 @@ public class Guard {
 	 * Override this method in a descendant class to define your own guard. 
 	 * This one always returns true.
 	 * 
-	 * @param node the object which state is going to change (usually a {@link StateMachinneEngine}).
+	 * @param node the object which state is going to change (usually a {@link StateMachineEngine}).
 	 * @param message the message carrying the event information
 	 * @return true if the state procedure is to be executed
 	 */

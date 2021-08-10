@@ -38,7 +38,8 @@ import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
 import fr.ens.biologie.generic.utils.Logging;
 
 /**
- * A class able to understand a state machine and send it relevant messages
+ * A class able to understand a state machine and send it relevant messages. This class
+ * will control a {@link StateMachineEngine} instance.
  *
  * @author Jacques Gignoux - 16 août 2019
  *
@@ -51,6 +52,11 @@ public class StateMachineController
 
 	private StateMachineEngine<StateMachineController> stateMachine;
 
+	/**
+	 * Constructor from a state machine.
+	 * 
+	 * @param observed the state machine to control
+	 */
 	public StateMachineController(StateMachineEngine<StateMachineController> observed) {
 		super();
 		stateMachine = observed;
@@ -67,7 +73,7 @@ public class StateMachineController
 	}
 
 	/**
-	 * computes what happens when a state machine returns its state.
+	 * Computes what happens when a state machine returns its state.
 	 * Meant to be overriden by descendants.
 	 *
 	 * @param newState the new state in which the state machine arrived
@@ -78,7 +84,7 @@ public class StateMachineController
 	}
 
 	/**
-	 * sends an event to trigger a transition in the state machine
+	 * Sends an event to trigger a transition in the state machine.
 	 *
 	 * @param event the event to send
 	 */
@@ -88,10 +94,18 @@ public class StateMachineController
 		stateMachine.callRendezvous(eventMessage);
 	}
 
+	/**
+	 * 
+	 * @return the status message code of its state machine
+	 */
 	public int statusMessageCode() {
 		return stateMachine.STATUS_MESSAGE;
 	}
 
+	/**
+	 * Access to the controlled state machine
+	 * @return the state machine
+	 */
 	public StateMachineEngine<? extends GridNode> stateMachine() {
 		return stateMachine;
 	}

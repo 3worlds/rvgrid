@@ -29,11 +29,15 @@
  **************************************************************************/
 package fr.cnrs.iees.rvgrid.statemachine;
 
+import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
 import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
 
 /**
- * Executes what should be executed at a state machine transition between states.
+ * The {@link RendezvousProcess} class to use with {@link StateMachineEngine}.
+ * Executes what should be executed at a state machine transition between states. This code is 
+ * invisibly called by {@link AbstractGridNode#callRendezvous callRendezvous(...)} and should
+ * never be directly manipulated. 
  * 
  * @author Jacques Gignoux - 14 août 2019
  *

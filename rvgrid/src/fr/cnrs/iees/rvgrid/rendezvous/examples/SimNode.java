@@ -43,8 +43,8 @@ import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
 
 /**
  * <p>An example 'simulator' node.</p> 
- * <p>This node understands two message types, {@link MSG_CTRL_TO_SIM1} and
- * {@link MSG_CTRL_TO_SIM2} (cf. constructor). </p>
+ * <p>This node understands two message types, {@link Main#MSG_CTRL_TO_SIM1 MSG_CTRL_TO_SIM1} and
+ * {@link Main#MSG_CTRL_TO_SIM2 MSG_CTRL_TO_SIM2} (cf. constructor). </p>
  * @author Jacques Gignoux - 9 août 2021
  *
  */

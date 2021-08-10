@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="35cm" height="27cm" viewBox="208 135 682 535" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Arrière-plan">
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #0000ff" points="276.525,435.8 262.622,435.8 262.622,501.8 748.425,501.8 748.425,528.339 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #0000ff" points="743.425,520.575 748.425,530.575 753.425,520.575 "/>
+      <text font-size="12.7998" style="fill: #0000ff; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="372.463" y="496.096">Finalise</text>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #bfbfbf" points="749.075,435.8 761.132,435.8 761.132,484.8 528.849,484.8 528.849,529.328 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #bfbfbf" points="523.849,521.564 528.849,531.564 533.849,521.564 "/>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #0000ff" points="528.85,409.8 578.699,409.8 578.699,471.8 748.424,471.8 748.424,529.328 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #0000ff" points="743.424,521.564 748.424,531.564 753.424,521.564 "/>
+      <text font-size="12.7998" style="fill: #0000ff; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="687.593" y="465.691">Finalise</text>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #008000" points="749.075,409.8 711.635,409.8 711.635,351.8 403.354,351.8 403.354,409.8 347.622,409.8 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #008000" points="355.386,404.8 345.386,409.8 355.386,414.8 "/>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="528.85,409.8 577.992,409.8 577.992,334.576 528.85,334.576 528.85,379.328 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="523.85,371.564 528.85,381.564 533.85,371.564 "/>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #bfbfbf" points="528.849,258.8 528.849,269.522 431.621,269.522 431.621,559.8 456.652,559.8 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #bfbfbf" points="448.888,564.8 458.888,559.8 448.888,554.8 "/>
+      <text font-size="12.7998" style="fill: #bfbfbf; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="450.005" y="312.956">Quit</text>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="460.374" y="232.8" width="136.95" height="52" rx="10" ry="10"/>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="528.849" y="254.7">
+        <tspan x="528.849" y="254.7">Waiting</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="470.374" y="270.7">do/ WaitProcedure</text>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="460.374" y1="258.8" x2="597.324" y2="258.8"/>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="675.9" y="383.8" width="146.35" height="52" rx="10" ry="10"/>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="749.075" y="405.7">
+        <tspan x="749.075" y="405.7">Pausing</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="685.9" y="421.7">do/ PauseProcedure</text>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="675.9" y1="409.8" x2="822.25" y2="409.8"/>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="459.9" y="383.8" width="137.9" height="52" rx="10" ry="10"/>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="528.85" y="405.7">
+        <tspan x="528.85" y="405.7">Stepping</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="469.9" y="421.7">do/ StepProcedure</text>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="459.9" y1="409.8" x2="597.8" y2="409.8"/>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="209.9" y="383.8" width="133.25" height="52" rx="10" ry="10"/>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="276.525" y="405.7">
+        <tspan x="276.525" y="405.7">Running</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="219.9" y="421.7">do/ RunProcedure</text>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="209.9" y1="409.8" x2="343.15" y2="409.8"/>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="461.124" y="533.8" width="135.45" height="52" rx="10" ry="10"/>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="528.849" y="555.7">
+        <tspan x="528.849" y="555.7">Quitting</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="471.124" y="571.7">do/ QuitProcedure</text>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="461.124" y1="559.8" x2="596.574" y2="559.8"/>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="675.9" y="533.8" width="145.05" height="52" rx="10" ry="10"/>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="748.425" y="555.7">
+        <tspan x="748.425" y="555.7">Finished</tspan>
+      </text>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="685.9" y="571.7">do/ FinishProcedure</text>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="675.9" y1="559.8" x2="820.95" y2="559.8"/>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="528.849,285.807 528.849,334.3 528.85,334.3 528.85,378.321 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="523.85,370.557 528.85,380.557 533.85,370.557 "/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="509.851" y="314.05">Step</text>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #800080" points="460.374,258.8 276.525,258.8 276.525,379.328 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #800080" points="271.525,371.564 276.525,381.564 281.525,371.564 "/>
+      <text font-size="12.7998" style="fill: #800080; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="335.45" y="243.8">Run</text>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #bfbfbf" points="528.85,436.807 528.85,484.8 528.849,484.8 528.849,528.321 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #bfbfbf" points="523.849,520.557 528.849,530.557 533.849,520.557 "/>
+      <text font-size="12.7998" style="fill: #bfbfbf; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="553.261" y="526.91">Quit</text>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #ffa500" points="597.8,409.8 628.922,409.8 628.922,258.8 601.796,258.8 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #ffa500" points="609.56,253.8 599.56,258.8 609.56,263.8 "/>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #008000" points="458.891,409.8 401.525,409.8 401.525,409.8 348.63,409.8 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #008000" points="356.394,404.8 346.394,409.8 356.394,414.8 "/>
+      <text font-size="12.7998" style="fill: #008000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="394.869" y="424.378">Continue</text>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="749.075,382.793 749.075,307.8 528.85,307.8 528.85,379.328 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="523.85,371.564 528.85,381.564 533.85,371.564 "/>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #ffa500" points="822.25,409.8 854.488,409.8 854.488,258.8 601.796,258.8 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #ffa500" points="609.56,253.8 599.56,258.8 609.56,263.8 "/>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #ffa500" points="820.95,559.8 889.844,559.8 889.844,258.8 601.796,258.8 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #ffa500" points="609.56,253.8 599.56,258.8 609.56,263.8 "/>
+      <text font-size="12.7998" style="fill: #ffa500; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="814.296" y="249.724">Reset/ResetProcedure</text>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #bfbfbf" points="674.891,559.8 636.237,559.8 636.237,559.8 602.055,559.8 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #bfbfbf" points="609.818,554.8 599.818,559.8 609.818,564.8 "/>
+      <text font-size="12.7998" style="fill: #bfbfbf; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="643.769" y="553.072">Quit</text>
+    </g>
+    <ellipse style="fill: #000000; fill-opacity: 1; stroke: none" cx="528.85" cy="146.8" rx="10" ry="10"/>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="528.85,156.8 528.85,194.297 528.849,194.297 528.849,227.321 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="523.849,219.557 528.849,229.557 533.849,219.557 "/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="563.851" y="183.803">Initialise</text>
+    </g>
+    <g>
+      <ellipse style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" cx="528.85" cy="654.406" rx="15" ry="15"/>
+      <ellipse style="fill: #000000; fill-opacity: 1; stroke: none" cx="528.85" cy="654.406" rx="10" ry="10"/>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="528.849,585.8 528.849,612.099 528.85,612.099 528.85,633.926 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="523.85,626.162 528.85,636.162 533.85,626.162 "/>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #ff0000" points="276.525,435.8 276.525,459.026 647.995,459.026 647.995,409.8 671.428,409.8 "/>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #ff0000" points="663.664,414.8 673.664,409.8 663.664,404.8 "/>
+      <text font-size="12.7998" style="fill: #ff0000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="391.76" y="454.526">Pause</text>
+    </g>
+  </g>
+</svg>
