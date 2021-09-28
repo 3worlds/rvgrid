@@ -1,4 +1,4 @@
-= RVGRID
+= The RVGRID library
 
 A light-weight implementation of https://www.adaic.org/[Ada]'s rendezvous pattern. Also includes a generic implementation of a https://en.wikipedia.org/wiki/Finite-state_machine[finite-state machine].
 
