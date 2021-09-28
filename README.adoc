@@ -11,3 +11,5 @@ Contains classes for:
 See the link:rvgrid/javadoc/index.html[javadoc]
 
 TODO: make the above point to a real javadoc page
+
+Depends on https://gitlab.iscpif.fr/threeworlds/omhtk[omhtk]
