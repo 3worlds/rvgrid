@@ -1,0 +1,13 @@
+= RVGRID
+
+A light-weight implementation of https://www.adaic.org/[Ada]'s rendezvous pattern. Also includes a generic implementation of a https://en.wikipedia.org/wiki/Finite-state_machine[finite-state machine].
+
+Contains classes for:
+
+* the https://en.wikipedia.org/wiki/Observer_pattern[observer pattern] (much simpler than java's)
+* the https://learn.adacore.com/courses/Ada_For_The_CPP_Java_Developer/chapters/11_Concurrency.html#rendezvous[rendezvous] pattern and a simple example
+* a universal finite state machine
+
+See the link:rvgrid/javadoc/index.html[javadoc]
+
+TODO: make the above point to a real javadoc page
