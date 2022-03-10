@@ -8,8 +8,6 @@ Contains classes for:
 * the https://learn.adacore.com/courses/Ada_For_The_CPP_Java_Developer/chapters/11_Concurrency.html#rendezvous[rendezvous] pattern and a simple example
 * a universal finite state machine
 
-See the link:rvgrid/javadoc/index.html[javadoc]
+See the https://3worlds.github.io/rvgrid/rvgrid/javadoc/index.html[javadoc]
 
-TODO: make the above point to a real javadoc page
-
-Depends on https://gitlab.iscpif.fr/threeworlds/omhtk[omhtk]
+Depends on https://github.com/3worlds/omhtk[omhtk]
