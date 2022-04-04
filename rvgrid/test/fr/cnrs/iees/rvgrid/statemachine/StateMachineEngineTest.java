@@ -55,7 +55,7 @@ public class StateMachineEngineTest {
 	private Event run,step,reset,goOn,pause,finalise,quit,initialise;
 
 	private void show(String method,String text) {
-		System.out.println(method+": "+text);
+//		System.out.println(method+": "+text);
 	}
 
 	@BeforeEach
