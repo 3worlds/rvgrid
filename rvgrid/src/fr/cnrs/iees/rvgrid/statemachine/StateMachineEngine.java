@@ -35,6 +35,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import fr.cnrs.iees.rvgrid.RvgridException;
@@ -107,6 +108,9 @@ public class StateMachineEngine<O extends GridNode>
 		implements Resettable, StateMachine, Observable<O> {
 
 	private static Logger log = Logging.getLogger(StateMachineEngine.class);
+	static {
+		log.setLevel(Level.OFF);
+	}
 
 	/** The message code used to send information about states to this class instance
 	 * observers. It is set in the constructor to max(event types)+1 */
