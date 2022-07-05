@@ -32,7 +32,8 @@ package fr.cnrs.iees.rvgrid.statemachine;
 import fr.cnrs.iees.rvgrid.observer.Observer;
 
 /**
- * A interface for objects able to understand the various states of a StateMachine. 
+ * A interface for objects able to understand the various states of a
+ * StateMachine.
  * 
  * @author Jacques Gignoux - 16 août 2019
  *
@@ -40,7 +41,7 @@ import fr.cnrs.iees.rvgrid.observer.Observer;
 public interface StateMachineObserver extends Observer {
 
 	/**
-	 * Computes what happens when a state machine returns its state.
+	 * A method called on all observers whenever there is a change in state.
 	 * 
 	 * @param state the new state in which the state machine arrived
 	 */
