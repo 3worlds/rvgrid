@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.cnrs.iees.rvgrid.observer"},{"l":"fr.cnrs.iees.rvgrid.rendezvous"},{"l":"fr.cnrs.iees.rvgrid.rendezvous.examples"}]
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"fr.cnrs.iees.rvgrid.observer"},{"l":"fr.cnrs.iees.rvgrid.rendezvous"},{"l":"fr.cnrs.iees.rvgrid.rendezvous.examples"}];updateSearchResults();
