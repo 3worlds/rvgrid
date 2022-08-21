@@ -92,7 +92,7 @@ public final class State implements Sealable {
 	 * is false.</li>
 	 * </ol>
 	 * 
-	 * @param transition
+	 * @param transition The {@link Transition} to add.
 	 */
 	public void addTransition(Transition transition) {
 		if (!sealed)

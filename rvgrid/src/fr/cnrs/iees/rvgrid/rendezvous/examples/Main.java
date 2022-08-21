@@ -54,6 +54,10 @@ public class Main {
 	/** Message type 2 from simulator to controller */
 	public static int MSG_SIM_TO_CTRL2 = 21;
 
+	/**
+	 * Run or debug to see the pattern in action.
+	 * @param args not used.
+	 */
 	public static void main(String[] args) {
 		SimNode sim = new SimNode();
 		CtrlNode ctrl = new CtrlNode();
