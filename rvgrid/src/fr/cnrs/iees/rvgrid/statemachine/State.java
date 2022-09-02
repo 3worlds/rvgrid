@@ -34,7 +34,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import fr.cnrs.iees.rvgrid.RvgridException;
 import fr.ens.biologie.generic.Sealable;
 
 /**
@@ -98,7 +97,7 @@ public final class State implements Sealable {
 		if (!sealed)
 			transitionList.add(transition);
 		else
-			throw new RvgridException("State: attempt to modify sealed data");
+			throw new IllegalStateException("State: attempt to modify sealed data");
 	}
 	
 	// other methods
@@ -152,7 +151,7 @@ public final class State implements Sealable {
 		Set<Event> events = new HashSet<Event>();
 		for (Transition t:transitionList)
 			if (!events.add(t.getEvent()))
-				throw new RvgridException("Error in state machine design: state '"+name
+				throw new IllegalStateException("Error in state machine design: state '"+name
 					+"' has two outgoing transition triggered by the same event '"
 					+t.getEvent().getName()+"'");
 		sealed = true;

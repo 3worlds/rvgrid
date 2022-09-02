@@ -38,7 +38,6 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import fr.cnrs.iees.rvgrid.RvgridException;
 import fr.cnrs.iees.rvgrid.observer.Observable;
 import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
@@ -135,7 +134,7 @@ public class StateMachineEngine<O extends GridNode>
 		for (Event e:events)
 			for (Event ee:events)
 				if ((e!=ee)&(e.getMessageType()==ee.getMessageType()))
-					throw new RvgridException("Error in state machine design: "
+					throw new IllegalStateException("Error in state machine design: "
 						+ "events '" + e.getName()
 						+ "' and '" + ee.getName()
 						+ "' have the same message type '" + e.getMessageType()
@@ -148,7 +147,7 @@ public class StateMachineEngine<O extends GridNode>
 		for (State s:stateList)
 			for (Transition t:s.getTransitions())
 				if (!stateList.contains(t.getToState()))
-					throw new RvgridException("Error in state machine design: state '" + t.getToState().getName()
+					throw new IllegalStateException("Error in state machine design: state '" + t.getToState().getName()
 							+ "' in transition triggered by event '" + t.getEvent().getName()
 							+ "' is unknown from the state machine");
 	}
@@ -363,7 +362,7 @@ public class StateMachineEngine<O extends GridNode>
 					return s;
 			}
 		}
-		throw new RvgridException("StateModel: Cannot find state named '" + name + "'");
+		throw new IllegalStateException("StateModel: Cannot find state named '" + name + "'");
 	}
 
 	/**
