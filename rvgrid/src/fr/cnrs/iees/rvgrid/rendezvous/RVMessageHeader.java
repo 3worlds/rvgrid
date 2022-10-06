@@ -30,34 +30,54 @@
 package fr.cnrs.iees.rvgrid.rendezvous;
 
 /**
- * Message header for rendezvous messages. No descendants. Can only be created by a call to
- * the constructor {@link RVMessage#RVMessage(int, Object, GridNode, GridNode) RVMessage(...)}.
+ * Message header for rendezvous messages.
+ * <p>
+ * This class is {@code final} and can only be created from
+ * {@link RVMessage#RVMessage(int, Object, GridNode, GridNode) RVMessage(...)}.
  * 
- * @author Ian davies - 14 août 2019<br/>
- * 			after Shayne Flint, 2012
+ * @author Ian Davies - 14 août 2019<br/>
+ *         after Shayne Flint, 2012
  *
  */
 public final class RVMessageHeader {
-	
-	private int type;
-	private GridNode source,target;
+	private static int lastType = 0;
 
-	protected RVMessageHeader (int type, GridNode source, GridNode target) {
-		this.type=type;
+	/**
+	 * Generates a unique int for message header types on request from any source.
+	 * <p>
+	 * The result should be held by the caller as a {@code final static} value.
+	 * 
+	 * @return Unique int.
+	 */
+	public static int createUniqueMessageHeaderType() {
+		if (lastType == Integer.MAX_VALUE)
+			throw new IllegalStateException("Generating unique message header types has overflowed.");
+		int newType = lastType + 1;
+		lastType = newType;
+		return lastType;
+	}
+
+	private int type;
+	private GridNode source, target;
+
+	protected RVMessageHeader(int type, GridNode source, GridNode target) {
+		this.type = type;
 		this.source = source;
 		this.target = target;
 	}
-	
+
 	/**
 	 * The type of the {@code RendezvousProcess} to execute at rendezvous.
+	 * 
 	 * @return the type
 	 */
 	public int type() {
 		return type;
 	}
-	
+
 	/**
 	 * The caller {@code GridNode}.
+	 * 
 	 * @return the sender of this message
 	 */
 	public GridNode source() {
@@ -66,6 +86,7 @@ public final class RVMessageHeader {
 
 	/**
 	 * The {@code GridNode} to which this message is sent
+	 * 
 	 * @return the receiver of this message
 	 */
 	public GridNode target() {
