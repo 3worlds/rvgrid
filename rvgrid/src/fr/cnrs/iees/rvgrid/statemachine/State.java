@@ -34,7 +34,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import fr.ens.biologie.generic.Sealable;
+import fr.cnrs.iees.omhtk.Sealable;
 
 /**
  * A discrete state characteristic of a state machine.

@@ -42,8 +42,8 @@ import fr.cnrs.iees.rvgrid.observer.Observable;
 import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
-import fr.ens.biologie.generic.Resettable;
-import fr.ens.biologie.generic.utils.Logging;
+import fr.cnrs.iees.omhtk.Resettable;
+import fr.cnrs.iees.omhtk.utils.Logging;
 
 /**
  * <p>Implementation of a universal finite-state machine.</p>

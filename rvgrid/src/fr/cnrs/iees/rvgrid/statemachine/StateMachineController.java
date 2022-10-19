@@ -35,7 +35,7 @@ import fr.cnrs.iees.rvgrid.rendezvous.AbstractGridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.GridNode;
 import fr.cnrs.iees.rvgrid.rendezvous.RVMessage;
 import fr.cnrs.iees.rvgrid.rendezvous.RendezvousProcess;
-import fr.ens.biologie.generic.utils.Logging;
+import fr.cnrs.iees.omhtk.utils.Logging;
 
 /**
  * A class able to understand a state machine and send it relevant messages. This class
