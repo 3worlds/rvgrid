@@ -30,7 +30,7 @@
 	</publications>
 
 	<dependencies>
-		<dependency org="fr.cnrs.iees.omhtk" name="generics" rev="[0.5.0,)"/>
+		<dependency org="fr.cnrs.iees.omhtk" name="generics" rev="[0.5.1,)"/>
 	</dependencies>
 
 </ivy-module>
